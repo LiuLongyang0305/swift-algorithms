@@ -16,6 +16,74 @@ package updates, you can specify your package dependency using
 
 ---
 
+## [0.0.4] - 2021-03-29
+
+### Additions
+
+More new algorithms to join the party:
+
+- A lazy version of the standard library's two `split` methods. ([#78])
+- `firstNonNil(_:)` returns the first non-`nil` element from an
+  optional-generating transform. ([#31])
+- `uniquePermutations()` skips duplicates when generating permutations of a
+  collection. ([#91])
+- The `reductions` methods return all the in-between states of reducing a
+  sequence or collection. ([#46])
+
+### Fixes
+
+- Methods and computed properties are more consistently marked as inlinable, 
+  resolving a performance regression. 
+- The `Stride` type now efficiently calculates distances between positions,
+  supported by the underlying collection.
+- Better test coverage and improved diagnostics for comparing sequences.
+- Fixed links and improved documentation.
+
+The 0.0.4 release includes contributions from [bjhomer], [danielctull],
+[hashemi], [karwa], [kylemacomber], [LucianoPAlmeida], [mdznr], [natecook1000],
+[ollieatkinson], [Qata], [timvermeulen], and [toddthomas]. Thank you!
+
+## [0.0.3] - 2021-02-26
+
+### Additions
+
+An exciting group of new algorithms, contributed by the community:
+
+- `trimming(while:)` returns a subsequence of a bidirectional collection with
+  the matching elements removed from the start and end. ([#4])
+- `min(ofCount:)` and `max(ofCount:)` find the smallest or largest elements in 
+  a collection. ([#9], [#77])
+- `windows(ofCount:)` lets you iterate over all the overlapping subsequences of
+  a particular length. ([#20])
+- `striding(by:)` iterates over every *n*th element of a sequence or collection.
+  ([#24])
+- `interspersed(with:)` places a new element between every pair of elements in
+  a sequence or collection. ([#35])
+- `chunks(ofCount:)` breaks a collection into subsequences of the given number
+  of elements. ([#54])
+- `suffix(while:)` matches the standard library's `prefix(while:)`, by 
+  returning the suffix of all matching elements from a bidirectional collection.
+  ([#65])
+- Variations of `combinations(ofCount:)` and `permutations(ofCount:)` that take
+  a range expression as a parameter, returning combinations and permutations of
+  multiple lengths. ([#51], [#56])
+
+### Changes
+
+- The `LazyChunked` type now precomputes its `startIndex`, making performance
+  more predictable when using the collection. 
+
+### Fixes
+
+- `randomSample(count:)` no longer traps in rare circumstances.
+- Index calculations have been improved in a variety of collection wrappers.
+- A variety of documentation improvements and corrections.
+
+The 0.0.3 release includes contributions from [benrimmington], [danielctull],
+[dhruvshah8], [karwa], [LucianoPAlmeida], [markuswntr], [mdznr], [michiboo],
+[natecook1000], [ollieatkinson], [rakaramos], [rockbruno], [Roshankumar350],
+[sidepelican], and [timvermeulen]. Thank you!
+
 ## [0.0.2] - 2020-10-23
 
 ### Changes
@@ -32,7 +100,7 @@ package updates, you can specify your package dependency using
 
 ### Fixes
 
-- Swift Algorithms now builds under SwiftPM on Windows.
+- `Algorithms` now builds under SwiftPM on Windows.
 - A wide variety of errors, misspellings, and ommissions in the documentation
   and guides have been fixed. 
 - Index/distance calculations for the `Product2` and `Chain` types have been
@@ -44,6 +112,7 @@ The 0.0.2 release includes contributions from [AustinConlon], [egorzhdan],
 [IanKeen], [iSame7], [karwa], [kylemacomber], [natecook1000], [nordicio],
 [pmtao], [schlagelk], [stephentyrone], and [timvermeulen]. Thank you!
 
+
 ## [0.0.1] - 2020-10-07
 
 - **Swift Algorithms** initial release.
@@ -54,23 +123,56 @@ This changelog's format is based on [Keep a Changelog](https://keepachangelog.co
 
 <!-- Link references for releases -->
 
-[Unreleased]: https://github.com/apple/swift-algorithms/compare/0.0.2...HEAD
+[Unreleased]: https://github.com/apple/swift-algorithms/compare/0.0.4...HEAD
+[0.0.4]: https://github.com/apple/swift-algorithms/compare/0.0.3...0.0.4
+[0.0.3]: https://github.com/apple/swift-algorithms/compare/0.0.2...0.0.3
 [0.0.2]: https://github.com/apple/swift-algorithms/compare/0.0.1...0.0.2
 [0.0.1]: https://github.com/apple/swift-algorithms/releases/tag/0.0.1
 
 <!-- Link references for pull requests -->
 
+[#4]: https://github.com/apple/swift-algorithms/pull/4
+[#9]: https://github.com/apple/swift-algorithms/pull/9
+[#20]: https://github.com/apple/swift-algorithms/pull/20
+[#24]: https://github.com/apple/swift-algorithms/pull/24
+[#31]: https://github.com/apple/swift-algorithms/pull/31
+[#35]: https://github.com/apple/swift-algorithms/pull/35
+[#46]: https://github.com/apple/swift-algorithms/pull/46
+[#51]: https://github.com/apple/swift-algorithms/pull/51
+[#54]: https://github.com/apple/swift-algorithms/pull/54
+[#56]: https://github.com/apple/swift-algorithms/pull/56
+[#65]: https://github.com/apple/swift-algorithms/pull/65
+[#77]: https://github.com/apple/swift-algorithms/pull/77
+[#78]: https://github.com/apple/swift-algorithms/pull/78
+[#91]: https://github.com/apple/swift-algorithms/pull/91
+
 <!-- Link references for contributors -->
 
 [AustinConlon]: https://github.com/apple/swift-algorithms/commits?author=AustinConlon
+[benrimmington]: https://github.com/apple/swift-algorithms/commits?author=benrimmington
+[bjhomer]: https://github.com/apple/swift-algorithms/commits?author=bjhomer
+[danielctull]: https://github.com/apple/swift-algorithms/commits?author=danielctull
+[dhruvshah8]: https://github.com/apple/swift-algorithms/commits?author=dhruvshah8
 [egorzhdan]: https://github.com/apple/swift-algorithms/commits?author=egorzhdan
+[hashemi]: https://github.com/apple/swift-algorithms/commits?author=hashemi
 [IanKeen]: https://github.com/apple/swift-algorithms/commits?author=IanKeen
 [iSame7]: https://github.com/apple/swift-algorithms/commits?author=iSame7
 [karwa]: https://github.com/apple/swift-algorithms/commits?author=karwa
 [kylemacomber]: https://github.com/apple/swift-algorithms/commits?author=kylemacomber
+[LucianoPAlmeida]: https://github.com/apple/swift-algorithms/commits?author=LucianoPAlmeida
+[markuswntr]: https://github.com/apple/swift-algorithms/commits?author=markuswntr
+[mdznr]: https://github.com/apple/swift-algorithms/commits?author=mdznr
+[michiboo]: https://github.com/apple/swift-algorithms/commits?author=michiboo
 [natecook1000]: https://github.com/apple/swift-algorithms/commits?author=natecook1000
 [nordicio]: https://github.com/apple/swift-algorithms/commits?author=nordicio
+[ollieatkinson]: https://github.com/apple/swift-algorithms/commits?author=ollieatkinson
 [pmtao]: https://github.com/apple/swift-algorithms/commits?author=pmtao
+[Qata]: https://github.com/apple/swift-algorithms/commits?author=Qata
+[rakaramos]: https://github.com/apple/swift-algorithms/commits?author=rakaramos
+[rockbruno]: https://github.com/apple/swift-algorithms/commits?author=rockbruno
+[Roshankumar350]: https://github.com/apple/swift-algorithms/commits?author=Roshankumar350
 [schlagelk]: https://github.com/apple/swift-algorithms/commits?author=schlagelk
+[sidepelican]: https://github.com/apple/swift-algorithms/commits?author=sidepelican
 [stephentyrone]: https://github.com/apple/swift-algorithms/commits?author=stephentyrone
 [timvermeulen]: https://github.com/apple/swift-algorithms/commits?author=timvermeulen
+[toddthomas]: https://github.com/apple/swift-algorithms/commits?author=toddthomas

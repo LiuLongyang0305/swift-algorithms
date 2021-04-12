@@ -25,23 +25,23 @@ extension MutableCollection where Self: BidirectionalCollection {
   ///     Output:
   ///     [p o n m e f g h i j k l d c b a]
   ///             ^               ^
-  ///             f               l
+  ///           lower           upper
   ///
-  /// - Postcondition: For returned indices `(f, l)`:
-  ///   `f == limit || l == limit`
-  @usableFromInline
+  /// - Postcondition: For returned indices `(lower, upper)`:
+  ///   `lower == limit || upper == limit`
+  @inlinable
   @discardableResult
   internal mutating func _reverse(
     subrange: Range<Index>, until limit: Index
   ) -> (Index, Index) {
-    var f = subrange.lowerBound
-    var l = subrange.upperBound
-    while f != limit && l != limit {
-      formIndex(before: &l)
-      swapAt(f, l)
-      formIndex(after: &f)
+    var lower = subrange.lowerBound
+    var upper = subrange.upperBound
+    while lower != limit && upper != limit {
+      formIndex(before: &upper)
+      swapAt(lower, upper)
+      formIndex(after: &lower)
     }
-    return (f, l)
+    return (lower, upper)
   }
   
   /// Reverses the elements within the given subrange.
@@ -59,13 +59,12 @@ extension MutableCollection where Self: BidirectionalCollection {
   @inlinable
   public mutating func reverse(subrange: Range<Index>) {
     if subrange.isEmpty { return }
-    var lo = subrange.lowerBound
-    var hi = subrange.upperBound
-    
-    while lo < hi {
-      formIndex(before: &hi)
-      swapAt(lo, hi)
-      formIndex(after: &lo)
+    var lower = subrange.lowerBound
+    var upper = subrange.upperBound
+    while lower < upper {
+      formIndex(before: &upper)
+      swapAt(lower, upper)
+      formIndex(after: &lower)
     }
   }
 }
@@ -95,7 +94,7 @@ extension MutableCollection {
   ///   - distance(from: lhs.lowerBound, to: p) == distance(from:
   ///     rhs.lowerBound, to: q)
   ///   - p == lhs.upperBound || q == rhs.upperBound
-  @usableFromInline
+  @inlinable
   internal mutating func _swapNonemptySubrangePrefixes(
     _ lhs: Range<Index>, _ rhs: Range<Index>
   ) -> (Index, Index) {
@@ -213,7 +212,7 @@ extension MutableCollection {
   ///   rotating.
   /// - Returns: The new index of the element that was first pre-rotation.
   ///
-  /// - Complexity: O(*n*)
+  /// - Complexity: O(*n*), where *n* is the length of the collection.
   @inlinable
   @discardableResult
   public mutating func rotate(toStartAt newStart: Index) -> Index {
@@ -273,7 +272,7 @@ extension MutableCollection where Self: BidirectionalCollection {
   ///   rotating.
   /// - Returns: The new index of the element that was first pre-rotation.
   ///
-  /// - Complexity: O(*n*)
+  /// - Complexity: O(*n*), where *n* is the length of the collection.
   @inlinable
   @discardableResult
   public mutating func rotate(toStartAt newStart: Index) -> Index {
